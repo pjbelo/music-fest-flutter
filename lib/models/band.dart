@@ -32,7 +32,7 @@ class Band {
 
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
-      return jsonResponse.map((band) => new Band.fromJson(band)).toList();
+      return jsonResponse.map((band) => Band.fromJson(band)).toList();
     } else {
       // decide how you want to handle errors
       // throw Exception('Failed to read from API');
@@ -47,9 +47,9 @@ class Band {
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
-      Map data = json.decode(response.body);
-      inspect(data);
-      return Band.fromJson(data);
+      Map jsonResponse = json.decode(response.body);
+      inspect(jsonResponse);
+      return Band.fromJson(jsonResponse);
     } else {
       // decide how you want to handle errors
       // throw Exception('Failed to read from API');

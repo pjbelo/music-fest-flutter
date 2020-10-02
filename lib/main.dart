@@ -15,9 +15,8 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('Music Festival'),
         ),
-        //body: Center(child: BandsListView()),
-        body: Center(
-            child: BandView(28, 'Pink Floyd')), //<<<<<< replace with vars
+        body: Center(child: BandsListView()),
+        //body: Center(child: BandDetailsScreen(28, 'Pink Floyd')), //<<<<<< replace with vars
       ),
     );
   }

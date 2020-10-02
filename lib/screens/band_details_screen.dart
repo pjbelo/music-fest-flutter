@@ -4,16 +4,16 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:music_fest_flutter/models/band.dart';
 
-class BandView extends StatefulWidget {
+class BandDetailsScreen extends StatefulWidget {
   final int bandId;
   final String bandName;
-  BandView(this.bandId, this.bandName);
+  BandDetailsScreen(this.bandId, this.bandName);
 
   @override
-  _BandViewState createState() => _BandViewState();
+  _BandDetailsScreenState createState() => _BandDetailsScreenState();
 }
 
-class _BandViewState extends State<BandView> {
+class _BandDetailsScreenState extends State<BandDetailsScreen> {
   Future<Band> futureBand;
 
   @override
