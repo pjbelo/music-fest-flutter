@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'dart:developer';
 
 class Band {
   final int id;
@@ -26,8 +27,8 @@ class Band {
   }
 
   static Future<List<Band>> fetchBands() async {
-    final bandsListAPIUrl = 'https://music-fest.herokuapp.com/bands.json';
-    final response = await http.get(bandsListAPIUrl);
+    final url = 'https://music-fest.herokuapp.com/bands.json';
+    final response = await http.get(url);
 
     if (response.statusCode == 200) {
       List jsonResponse = json.decode(response.body);
@@ -38,6 +39,23 @@ class Band {
       // or
       print('Failed to read from API');
       return [];
+    }
+  }
+
+  static Future<Band> fetchBand(bandId) async {
+    final url = 'https://music-fest.herokuapp.com/bands/$bandId.json';
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      Map data = json.decode(response.body);
+      inspect(data);
+      return Band.fromJson(data);
+    } else {
+      // decide how you want to handle errors
+      // throw Exception('Failed to read from API');
+      // or
+      print('Failed to read from API');
+      return null;
     }
   }
 }
