@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:music_fest_flutter/models/band.dart';
+import 'package:music_fest_flutter/screens/band_details_screen.dart';
 
 class BandsListView extends StatefulWidget {
   @override
@@ -24,8 +25,8 @@ class _BandsListViewState extends State<BandsListView> {
       future: futureBands,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          List<Band> data = snapshot.data;
-          return bandsListView(data);
+          List<Band> bands = snapshot.data;
+          return bandsListView(bands);
         } else if (snapshot.hasError) {
           return Text("${snapshot.error}");
         }
@@ -34,25 +35,33 @@ class _BandsListViewState extends State<BandsListView> {
     );
   }
 
-  ListView bandsListView(data) {
+  ListView bandsListView(bands) {
     return ListView.builder(
-        itemCount: data.length,
+        itemCount: bands.length,
         itemBuilder: (context, index) {
-          inspect(data[index]);
-          return tile(data[index], Icons.subject);
+          inspect(bands[index]);
+          return tile(bands[index]);
         });
   }
 
-  ListTile tile(dynamic data, IconData icon) => ListTile(
-        title: Text('${data.id} > ${data.name}',
+  ListTile tile(Band band) => ListTile(
+        title: Text('${band.id} > ${band.name}',
             style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 20,
             )),
-        subtitle: Text(data.description),
+        // subtitle: Text(data.description),
         leading: Icon(
-          icon,
+          Icons.subject,
           color: Colors.blue[500],
         ),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => BandDetailsScreen(band.id, band.name),
+            ),
+          );
+        },
       );
 }
