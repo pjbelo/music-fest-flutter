@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:music_fest_flutter/models/band.dart';
 
@@ -62,8 +61,11 @@ class BandDetails extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.all(20),
       children: [
+        Image.network(band.imagePath['url']),
+        SizedBox(height: 20),
         Text(band.name),
         Text(band.description),
+        Text('Artistic director: ${band.artisticDirector}'),
       ],
     );
   }
