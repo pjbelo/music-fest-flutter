@@ -1,4 +1,5 @@
 # Music Festival Mobile (Flutter)
+## >>>>> [WIP] Work In Progress <<<<<
 
 Project developed using Flutter
 
