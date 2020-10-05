@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:music_fest_flutter/constants.dart';
 import 'package:music_fest_flutter/models/band.dart';
 
 class BandDetailsScreen extends StatefulWidget {
@@ -31,6 +32,7 @@ class _BandDetailsScreenState extends State<BandDetailsScreen> {
       home: Scaffold(
         appBar: AppBar(
           title: Text(widget.bandName),
+          backgroundColor: kColor5,
         ),
         body: Center(
           child: FutureBuilder<Band>(
@@ -63,9 +65,17 @@ class BandDetails extends StatelessWidget {
       children: [
         Image.network(band.imagePath['url']),
         SizedBox(height: 20),
-        Text(band.name),
+        Text(
+          band.name,
+          style: kTextStyleTitle1,
+        ),
+        SizedBox(height: 10),
         Text(band.description),
-        Text('Artistic director: ${band.artisticDirector}'),
+        SizedBox(height: 10),
+        Text(
+          'Artistic director: ${band.artisticDirector}',
+          style: kTextStyleTitle2,
+        ),
       ],
     );
   }
